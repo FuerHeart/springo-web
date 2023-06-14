@@ -37,7 +37,7 @@
       </el-row>
 
       <div class="licence">
-        Copyright(C)2022-2025 曾家爱 版权所有 粤ICP备05053330号
+        Copyright©2022-2025 曾家爱 版权所有 粤ICP备19980902号
       </div>
     </div>
   </div>

@@ -31,6 +31,22 @@
           <!--            :key="index"-->
           <!--            :data="item"/>-->
 
+
+          <!-- 停留时间过长提示 -->
+          <el-dialog
+            title="温馨提示"
+            :visible.sync="showTimeoutMessage"
+            width="35%"
+            :close-on-click-modal="false"
+            :show-close="false"
+            :before-close="handleClose">
+            <span>您的停留时间过长，航班及价格信息可能发生变动，正在为您查询最新价格。</span>
+            <span slot="footer" class="dialog-footer">
+    <el-button class="ps-button" type="primary" @click="resetTimer">我知道啦</el-button>
+        </span>
+          </el-dialog>
+
+
           <!-- 分页 -->
           <!-- size-change: 显示条数切换触发 -->
           <!-- current-change: 切换页数时候触发 -->
@@ -79,6 +95,9 @@ export default {
       dataList: [], // 存当前页的数据
 
       directFlightsData: [],
+
+      timeoutDuration: 60000, // 停留时间阈值，单位为毫秒
+      showTimeoutMessage: false, // 是否显示停留时间过长的提示
     }
   },
 
@@ -141,6 +160,7 @@ export default {
           departureDate: this.$route.query.departureDate,
         },
       }).then(res => {
+        console.log(res.data)
         // 总数据，flightsData。flights是会修改的
         //Map转集合就是去 值的集 key这个可以完全不要的
         //加强for 默认是取 key集 直接想数组那样 map[key] 取值 然后 push 到数组就行
@@ -179,12 +199,36 @@ export default {
         this.total = this.flightsData.length;
         this.pageIndex = 1;
       })
+    },
+    startTimer() {
+      setTimeout(() => {
+        this.showTimeoutMessage = true;
+      }, this.timeoutDuration);
+    },
+    resetTimer() {
+      clearTimeout(this.timerId);
+      this.showTimeoutMessage = false;
+      this.startTimer();
+      this.getData();
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          // clearTimeout(this.timerId);
+          // this.startTimer();
+          done();
+          console.log(done)
+          console.log("确定")
+        })
+        .catch(_ => {
+        });
     }
   },
 
   mounted() {
     // 请求机票列表
     this.getData();
+    this.startTimer();
     // 获取token
     // const store = JSON.parse(localStorage.getItem("store"));
     // console.log(store.user.userInfo.token)
@@ -237,5 +281,9 @@ export default {
 
 .aside {
   width: 240px;
+}
+
+.ps-button {
+  width: 100%;
 }
 </style>

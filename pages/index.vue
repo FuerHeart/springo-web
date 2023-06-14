@@ -2,44 +2,6 @@
   <section class="container">
     <h2 class="air-title"><span class="iconfont iconfeiji"></span>
       <i>国内机票</i>
-      <div>
-        <el-statistic :value="countDownTimer" format="HH:mm:ss" time-indices>
-          <template slot="prefix">剩余支付时间</template>
-          <template slot="suffix"> 若订单超时请重新订购</template>
-        </el-statistic>
-      </div>
-
-<!--      <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>-->
-
-<!--      <el-dialog-->
-<!--        title="温馨提示"-->
-<!--        :visible.sync="dialogVisible"-->
-<!--        width="32%"-->
-<!--        :close-on-click-modal="false"-->
-<!--        :show-close="false"-->
-<!--        :before-close="handleClose">-->
-<!--        <span>您的停留时间过长，航班及价格信息可能发生变动，正在为您查询最新价格。</span>-->
-<!--        <span slot="footer" class="dialog-footer">-->
-<!--    <el-button class="ps-button" type="primary" @click="dialogVisible = false">确 定</el-button>-->
-<!--  </span>-->
-<!--      </el-dialog>-->
-
-
-      <!-- 停留时间过长提示 -->
-      <el-dialog
-        title="温馨提示"
-        :visible.sync="showTimeoutMessage"
-        width="50%"
-        :close-on-click-modal="false"
-        :show-close="false"
-        :before-close="handleClose">
-        <span>您的停留时间过长，航班及价格信息可能发生变动，正在为您查询最新价格。</span>
-        <span slot="footer" class="dialog-footer">
-    <el-button class="ps-button" type="primary" @click="resetTimer">我知道啦</el-button>
-        </span>
-      </el-dialog>
-
-
     </h2>
     <!-- 搜索广告栏 -->
     <el-row type="flex" justify="space-between">
@@ -131,10 +93,6 @@ export default {
       sales: [],
       history: [],
       user: [],
-      timeoutDuration: 60000, // 停留时间阈值，单位为毫秒
-      showTimeoutMessage: false, // 是否显示停留时间过长的提示
-      timerId: null, // 计时器ID
-      countDownTimer: Date.now() + 1000 * 30 * 60, // 倒计时
     }
   },
 
@@ -143,7 +101,7 @@ export default {
   },
 
   mounted() {
-    this.startTimer();
+    // this.startTimer();
     // 加载本地的搜索记录
     this.history = JSON.parse(localStorage.getItem("airs") || `[]`)
     this.user = JSON.parse(localStorage.getItem("store") || `[]`)
@@ -173,17 +131,17 @@ export default {
       localStorage.removeItem("airs");
       this.history = [];
     },
-    startTimer() {
-      setTimeout(() => {
-        this.showTimeoutMessage = true;
-      }, this.timeoutDuration);
-    },
-    resetTimer() {
-      clearTimeout(this.timerId);
-      this.showTimeoutMessage = false;
-      this.startTimer();
-      console.log("这个确定按钮，下一步是请求api")
-    },
+    // startTimer() {
+    //   setTimeout(() => {
+    //     this.showTimeoutMessage = true;
+    //   }, this.timeoutDuration);
+    // },
+    // resetTimer() {
+    //   clearTimeout(this.timerId);
+    //   this.showTimeoutMessage = false;
+    //   this.startTimer();
+    //   console.log("这个确定按钮，下一步是请求api")
+    // },
     // handleClose(done) {
     //   this.$confirm('确认关闭？')
     //     .then(_ => {

@@ -14,6 +14,10 @@
           <div class="order-item">
             <el-row :gutter="20">
               <el-col :span="16">
+                <el-statistic :value="countDownTimer" format="HH:mm:ss" time-indices>
+                  <template slot="prefix">剩余支付时间</template>
+                  <template slot="suffix"> 若订单超时请重新订购</template>
+                </el-statistic>
                 <div class="flight-info-item">
                   <span>{{ order.departureAirportName }} {{ order.departureTerminal }}</span>
                   <img class="arrow-oneway" src="@/assets/images/icon_sprite.png" alt="">
@@ -64,7 +68,10 @@ export default {
       subject: "机票订单",
       // 产品码
       product_code: "FAST_INSTANT_TRADE_PAY",
-      total_amount: "500"
+      total_amount: "500",
+
+      timerId: null, // 计时器ID
+      countDownTimer: Date.now() + 1000 * 30 * 60, // 倒计时
     }
   },
   filters: {
