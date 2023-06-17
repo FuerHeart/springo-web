@@ -45,8 +45,8 @@ $ yarn generate
 
 ## 演示截图
 
-![首页](D:\Desktop\项目最新进展\前端\springo-web\assets\images\首页.png)
+![首页](springo-web\assets\images\首页.png)
 
-![航班列表](D:\Desktop\项目最新进展\前端\springo-web\assets\images\航班列表.png)
+![航班列表](springo-web\assets\images\航班列表.png)
 
-![添加乘机人](D:\Desktop\项目最新进展\前端\springo-web\assets\images\添加乘机人.png)
+![添加乘机人](springo-web\assets\images\添加乘机人.png)
