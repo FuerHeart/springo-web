@@ -45,8 +45,8 @@ $ yarn generate
 
 ## 演示截图
 
-![首页]([springo-web\assets\images](https://github.com/FuerHeart/springo-web/blob/master/assets/images)\首页.png)
+![首页](https://raw.githubusercontent.com/FuerHeart/springo-web/master/assets/images/首页.png)
 
-![航班列表]([springo-web\assets\images](https://github.com/FuerHeart/springo-web/blob/master/assets/images)https://github.com/FuerHeart/springo-web/blob/master/assets/images\航班列表.png)
+![航班列表]([springo-web\assets\images](https://github.com/FuerHeart/s-web/blob/master/assets/images)https://github.com/FuerHeart/springo-web/blob/master/assets/images\航班列表.png)
 
 ![添加乘机人]([springo-web\assets\images](https://github.com/FuerHeart/springo-web/blob/master/assets/images)https://github.com/FuerHeart/springo-web/blob/master/assets/images\添加乘机人.png)
